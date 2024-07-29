@@ -1,7 +1,15 @@
-print("plugin/example.lua is executed")
+local M = {}
 
-return {
-  a = function()
-    print("hello world")
-  end
-}
+function M.setup(opts)
+   opts = opts or {}
+
+   vim.keymap.set("n", "<Leader>h", function()
+      if opts.name then
+         print("hello, " .. opts.name)
+      else
+         print("hello")
+      end
+   end)
+end
+
+return M
